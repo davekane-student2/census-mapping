@@ -7,6 +7,12 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: sarasota.qmd
+        text: Sarasota
+      - href: florida.qmd
+        text: Florida
+      - href: country.qmd
+        text: United States
       - about.qmd
 
 format:

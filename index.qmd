@@ -1,47 +1,47 @@
 ---
-title: "Census Maps"
+toc: false
 ---
 
-## Sarasota County's children, by census tract
-
-Each shape represents a census tract. Darker colors indicate a larger share of
-residents under age 18, based on the 2024 American Community Survey 5-year
-estimates.
-
-Run `Rscript download.R` before rendering this page to refresh the tract data.
-
 ```{r}
-#| fig-width: 10
-#| fig-height: 7
-#| fig-dpi: 180
+#| echo: false
+#| message: false
+#| warning: false
 
-library(ggplot2)
+library(leaflet)
+library(sf)
 
-tracts <- sf::st_read("sarasota_tracts_under18_2024.geojson", quiet = TRUE)
+tracts <- st_read("sarasota_tracts_under18_2024.geojson", quiet = TRUE) |>
+  st_transform(4326) # Leaflet expects WGS84 longitude/latitude coordinates
 
-ggplot(tracts) +
-  geom_sf(aes(fill = percent_under_18), color = "white", linewidth = 0.35) +
-  scale_fill_viridis_c(
-    option = "magma",
-    direction = -1,
-    labels = \(x) paste0(round(x), "%"),
-    name = "Residents under 18"
-  ) +
-  coord_sf(expand = FALSE) +
-  labs(
-    title = "The share of children varies across Sarasota County",
-    subtitle = "Percent of residents under age 18 in each census tract",
-    caption = "Source: U.S. Census Bureau, 2024 ACS 5-year estimates. Estimates are subject to sampling error."
-  ) +
-  theme_void(base_size = 12) +
-  theme(
-    plot.title = element_text(face = "bold", size = 21, color = "#18324b"),
-    plot.subtitle = element_text(size = 12, color = "#52677b"),
-    plot.caption = element_text(size = 9, color = "#52677b", hjust = 0),
-    legend.position = "bottom",
-    legend.title = element_text(face = "bold", color = "#18324b"),
-    legend.text = element_text(color = "#52677b"),
-    legend.key.width = grid::unit(2.5, "cm"),
-    plot.margin = margin(12, 12, 12, 12)
+# Map percent_under_18 values to the reversed magma color palette
+pal <- colorNumeric(
+  palette = "magma",
+  domain = tracts$percent_under_18,
+  reverse = TRUE
+)
+
+leaflet(tracts) |>
+  addProviderTiles(providers$Esri.WorldTopoMap) |>
+  addPolygons(
+    fillColor = ~pal(percent_under_18),
+    fillOpacity = 0.75,
+    color = "white",
+    weight = 1,
+    label = ~paste0(NAME, ": ", round(percent_under_18, 1), "% under 18"),
+    highlightOptions = highlightOptions(
+      weight = 2,
+      color = "#18324b",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    )
+  ) |>
+  addLegend(
+    pal = pal,
+    values = ~percent_under_18,
+    labFormat = labelFormat(suffix = "%"),
+    title = "Residents under 18",
+    position = "bottomright"
   )
 ```
+
+Each shape on this map of Sarasota County, Florida represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates from the U.S. Census Bureau. Hover over any tract to see its exact percentage of children.

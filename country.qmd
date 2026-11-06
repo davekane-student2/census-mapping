@@ -1,0 +1,46 @@
+---
+title: "United States"
+---
+
+## America's children, by census tract
+
+Each shape represents a census tract. Darker colors indicate a larger share of
+residents under age 18, based on the 2024 American Community Survey 5-year
+estimates.
+
+```{r}
+#| echo: false
+#| fig-width: 11
+#| fig-height: 7
+#| fig-dpi: 180
+
+library(ggplot2)
+
+tracts <- sf::st_read("country/us_tracts_under18_2024.geojson", quiet = TRUE)
+
+ggplot(tracts) +
+  geom_sf(aes(fill = percent_under_18), color = NA) +
+  scale_fill_viridis_c(
+    option = "magma",
+    direction = -1,
+    labels = \(x) paste0(round(x), "%"),
+    name = "Residents under 18"
+  ) +
+  coord_sf(xlim = c(-125, -66), ylim = c(24, 50), expand = FALSE) +
+  labs(
+    title = "The share of children across U.S. census tracts",
+    subtitle = "Percent of residents under age 18 in each census tract",
+    caption = "Source: U.S. Census Bureau, 2024 ACS 5-year estimates. Estimates are subject to sampling error."
+  ) +
+  theme_void(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 21, color = "#18324b"),
+    plot.subtitle = element_text(size = 12, color = "#52677b"),
+    plot.caption = element_text(size = 9, color = "#52677b", hjust = 0),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold", color = "#18324b"),
+    legend.text = element_text(color = "#52677b"),
+    legend.key.width = grid::unit(2.5, "cm"),
+    plot.margin = margin(12, 12, 12, 12)
+  )
+```
