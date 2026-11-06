@@ -4,14 +4,7 @@
     "href": "index.html",
     "title": "Census Maps",
     "section": "",
-    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates.\nRun Rscript download.R before rendering this page to refresh the tract data."
-  },
-  {
-    "objectID": "index.html#sarasota-countys-children-by-census-tract",
-    "href": "index.html#sarasota-countys-children-by-census-tract",
-    "title": "Census Maps",
-    "section": "",
-    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates.\nRun Rscript download.R before rendering this page to refresh the tract data."
+    "text": "Each shape on this map of Sarasota County, Florida represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates from the U.S. Census Bureau. Hover over any tract to see its exact percentage of children."
   },
   {
     "objectID": "about.html",
@@ -19,5 +12,47 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "sarasota.html",
+    "href": "sarasota.html",
+    "title": "Sarasota County",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
+  },
+  {
+    "objectID": "sarasota.html#sarasota-countys-children-by-census-tract",
+    "href": "sarasota.html#sarasota-countys-children-by-census-tract",
+    "title": "Sarasota County",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
+  },
+  {
+    "objectID": "florida.html",
+    "href": "florida.html",
+    "title": "Florida",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
+  },
+  {
+    "objectID": "florida.html#floridas-children-by-census-tract",
+    "href": "florida.html#floridas-children-by-census-tract",
+    "title": "Florida",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
+  },
+  {
+    "objectID": "country.html",
+    "href": "country.html",
+    "title": "United States",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
+  },
+  {
+    "objectID": "country.html#americas-children-by-census-tract",
+    "href": "country.html#americas-children-by-census-tract",
+    "title": "United States",
+    "section": "",
+    "text": "Each shape represents a census tract. Darker colors indicate a larger share of residents under age 18, based on the 2024 American Community Survey 5-year estimates."
   }
 ]
